@@ -16,12 +16,32 @@ body {
   line-height: 1.7;
 }
 
+:root {
+  --color-white: #fff;
+  --color-grey: #eee;
+  --color-orange: #ff9101;
+}
+
 #container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 }
 
 .header {
+  flex: 0 0 10rem;
+  background-color: var(--color-white);
+
+  text-align: center;
+  font-family: monospace;
+  font-style: italic;
+  font-size: 2.5rem;
 }
-.main {
+
+.header a {
+  color: var(--color-orange);
 }
-.footer {
+
+a {
+  text-decoration: none;
 }
