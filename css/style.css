@@ -22,6 +22,17 @@ body {
   --color-orange: #ff9101;
 }
 
+.heading-1 {
+  font-size: 2em;
+}
+
+.heading-2 {
+  font-size: 2.3rem;
+}
+.heading-3 {
+  font-size: 2.5rem;
+}
+
 #container {
   display: flex;
   flex-direction: column;
@@ -49,6 +60,18 @@ a {
 .main {
   flex: 1 0 auto;
   background-color: var(--color-grey);
+  padding: 1.5rem;
+}
+
+.order-btn {
+  display: block;
+  width: fit-content;
+  margin-left: auto;
+}
+
+.main-content h3 {
+  text-align: center;
+  text-decoration: underline;
 }
 
 /* pizzas section */
@@ -58,6 +81,7 @@ a {
   flex-wrap: wrap;
   column-gap: 3rem;
   row-gap: 3rem;
+  margin-top: 2rem;
 }
 
 .pizza {
@@ -140,14 +164,16 @@ a {
 
 .btn {
   font-size: 1.8rem;
-  /* color: #a5ae32; */
+
   color: var(--color-orange);
   background-color: #1c1419;
   border: none;
   padding: 5px 10px;
-  margin: 1rem auto;
   border-radius: 5px;
   transition: all 0.2s;
+  width: fit-content;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 .btn:hover {
