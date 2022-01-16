@@ -158,3 +158,11 @@ a {
   color: inherit;
   text-decoration: none;
 }
+
+.footer {
+  flex: 0 0 12rem;
+  background-color: var(--color-orange);
+}
+.hidden {
+  display: none;
+}
