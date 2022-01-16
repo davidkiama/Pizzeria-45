@@ -15,6 +15,14 @@ const totalFinal = document
   .querySelector(".sub__total");
 const radios = document.querySelectorAll(".radio");
 
+//receipt selectors
+const recTops = document.querySelector(".receipt__toppings");
+const recCrust = document.querySelector(".receipt__crust");
+const recSize = document.querySelector(".receipt__size");
+const recQuantity = document.querySelector(".receipt__quantity");
+const recDelivery = document.querySelector(".receipt__delivery");
+const recTotal = document.querySelector(".receipt__total");
+
 //Dynamic content
 header.innerHTML = `<h1 class="heading-1"><a href="index.html">Pizzeria-45</a></h1>`;
 
@@ -72,6 +80,8 @@ const orderTotal = function (toppings, crust, size) {
 
   quantity.value ? (quantity = parseInt(quantity.value)) : (quantity = 1);
 
+  completeOrder.quantity = quantity;
+
   return subTotal * quantity;
 };
 
@@ -90,8 +100,10 @@ orderForm.addEventListener("submit", (e) => {
 });
 
 const totalCalc = () => {
-  totalFinal.textContent =
+  const totalCost =
     parseInt(deliveryFee.textContent) + parseInt(subTotal.textContent);
+  totalFinal.textContent = totalCost;
+  completeOrder.totalCost = totalCost;
 
   document.querySelector(".order-totals--delivery").classList.remove("hidden");
   document.querySelector(".order-totals--totals").classList.remove("hidden");
@@ -111,7 +123,7 @@ radios.forEach((radio) => {
     if (val == "no") {
       deliveryFee.textContent = 0;
       completeOrder.location = null;
-      completeOrder.deliveryFee = null;
+      completeOrder.deliveryFee = 0;
     }
 
     totalCalc();
@@ -121,5 +133,20 @@ radios.forEach((radio) => {
 //save the order plus delivery info to localstorage
 
 document.querySelector(".checkout").addEventListener("click", () => {
-  console.log(completeOrder);
+  //hide the order form
+  document.querySelector(".order").classList.add("hidden");
+  document.querySelector(".receipt").classList.remove("hidden");
+
+  recTops.innerHTML = `${completeOrder.order.toppings} <span> ${
+    menu.toppings[completeOrder.order.toppings]
+  }</span> `;
+  recCrust.innerHTML = `${completeOrder.order.crust}<span> ${
+    menu.crust[completeOrder.order.crust]
+  }</span> `;
+  recSize.innerHTML = `${completeOrder.order.size}<span> ${
+    menu.size[completeOrder.order.size]
+  }</span> `;
+  recQuantity.innerHTML = `Quantity  <span> ${completeOrder.quantity} </span>`;
+  recDelivery.innerHTML = `Delivery <span> ${completeOrder.deliveryFee} </span>`;
+  recTotal.innerHTML = `Total <span>${completeOrder.totalCost} </span>`;
 });
