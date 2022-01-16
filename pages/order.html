@@ -17,7 +17,40 @@
         <!--  -->
         <p>header</p>
       </header>
-      <main class="main main--order"></main>
+      <main class="main main--order">
+        <div class="order-totals">
+          <div class="order-totals--pizza">
+            <div>
+              <p>Quantity</p>
+              <input type="number" class="quantity" placeholder="1" />
+            </div>
+
+            <div>
+              <p>Ingridients</p>
+              <span class="ingridients">
+                <i class="ing__toppings"></i>
+                <i class="ing__crust"></i>
+                <i class="ing__size"></i>
+              </span>
+            </div>
+
+            <div>
+              <p>Total</p>
+              <span class="sub__total">0</span>
+            </div>
+          </div>
+
+          <div class="order-totals--delivery hidden">
+            <span>Delivery fees</span>
+            <span class="sub__total"></span>
+          </div>
+
+          <div class="order-totals--totals hidden">
+            <h2 class="heading-2">Total</h2>
+            <span class="sub__total"></span>
+          </div>
+        </div>
+      </main>
       <footer class="footer">
         <!--  -->
         <p>footer</p>
