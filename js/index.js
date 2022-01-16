@@ -1,6 +1,11 @@
 "use strict";
 
 const header = document.querySelector(".header");
+const footer = document.querySelector(".footer");
+//Dynamic content
+header.innerHTML = `<h1 class="heading-1"><a href="../index.html">Pizzeria-45</a></h1>`;
+footer.innerHTML = ` <p>Pizzeria-45</p> <p>Copyright &copy; 2021</p>`;
+
 const orderForm = document.querySelector(".order__form");
 const subTotal = document.querySelector(".sub__total");
 const selectTags = document.querySelectorAll("select");
@@ -22,9 +27,6 @@ const recSize = document.querySelector(".receipt__size");
 const recQuantity = document.querySelector(".receipt__quantity");
 const recDelivery = document.querySelector(".receipt__delivery");
 const recTotal = document.querySelector(".receipt__total");
-
-//Dynamic content
-header.innerHTML = `<h1 class="heading-1"><a href="index.html">Pizzeria-45</a></h1>`;
 
 //Constructor
 const Order = function (toppings, crust, size) {

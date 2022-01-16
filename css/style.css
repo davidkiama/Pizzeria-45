@@ -237,6 +237,11 @@ a {
 .footer {
   flex: 0 0 12rem;
   background-color: var(--color-orange);
+  font-size: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .hidden {
   display: none;
