@@ -8,7 +8,7 @@ This is a fictional web application that sells pizzas. One can place an order an
 
 ## Demo
 
-[Live Demo]()
+[Live Demo](https://davidkiama.github.io/Pizzeria-45/)
 
 ## Technologies Used
 
@@ -22,7 +22,7 @@ This is a fictional web application that sells pizzas. One can place an order an
 
 ## Project setup and instructions
 
-I have deployed the page and here is the [link](). You can also download the entire folder and open the html file on your browser.
+I have deployed the page and here is the [link](https://davidkiama.github.io/Pizzeria-45/). You can also download the entire folder and open the html file on your browser.
 
 ## Support and contact details
 
