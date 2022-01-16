@@ -4,7 +4,7 @@ const header = document.querySelector(".header");
 const footer = document.querySelector(".footer");
 //Dynamic content
 header.innerHTML = `<h1 class="heading-1"><a href="../index.html">Pizzeria-45</a></h1>`;
-footer.innerHTML = ` <p>Pizzeria-45</p> <p>Copyright &copy; 2021</p>`;
+footer.innerHTML = ` <p>Pizzeria-45</p> <p>Copyright &copy; 2022</p>`;
 
 const orderForm = document.querySelector(".order__form");
 const subTotal = document.querySelector(".sub__total");
