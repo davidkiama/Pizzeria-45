@@ -1,5 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
+import { OrderProvider } from "./OrderContext";
+
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
@@ -9,13 +11,15 @@ import Order from "./pages/Order";
 function App() {
   return (
     <BrowserRouter>
-      <Header />
+      <OrderProvider>
+        <Header />
 
-      <Routes>
-        <Route path="/" exact element={<Home />}></Route>
-        <Route path="/order" exact element={<Order />}></Route>
-      </Routes>
-      <Footer />
+        <Routes>
+          <Route path="/" exact element={<Home />}></Route>
+          <Route path="/order" exact element={<Order />}></Route>
+        </Routes>
+        <Footer />
+      </OrderProvider>
     </BrowserRouter>
   );
 }

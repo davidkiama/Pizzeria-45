@@ -1,46 +1,96 @@
 import React from "react";
+import { useContext } from "react";
+import { OrderContext } from "../OrderContext";
+
+const menu = {
+  toppings: {
+    pepperoni: 200,
+    mushroom: 150,
+    extraCheese: 300,
+    sausage: 300,
+  },
+  crust: {
+    stuffed: 200,
+    crispy: 450,
+    gluttenFree: 350,
+  },
+  size: {
+    small: 500,
+    medium: 750,
+    large: 900,
+  },
+};
 
 function Order() {
+  const { order, placeOrder } = useContext(OrderContext);
+
+  let quantity = order.quantity;
+  let ingridients = order.ingridients;
+  let totalPrice = order.totalPrice;
+  let subTotal = order.subTotal;
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    totalPrice = subTotal * quantity;
+
+    placeOrder(quantity, ingridients, subTotal, totalPrice);
+  };
   return (
-    <main class="main main--order">
-      <div class="order-totals">
-        <div class="order-totals--pizza">
+    <main className="main main--order">
+      <div className="order-totals">
+        <div className="order-totals--pizza">
           <div>
             <p>Quantity</p>
-            <input type="number" class="quantity" placeholder="1" />
+            <input
+              type="number"
+              className="quantity"
+              placeholder="1"
+              onChange={(e) => {
+                quantity = [e.target.value];
+              }}
+            />
           </div>
 
           <div>
             <p>Ingridients</p>
-            <span class="ingridients">
-              <i class="ing__toppings"></i>
-              <i class="ing__crust"></i>
-              <i class="ing__size"></i>
+            <span className="ingridients">
+              <i className="ing__toppings"></i>
+              <i className="ing__crust"></i>
+              <i className="ing__size"></i>
             </span>
           </div>
 
           <div>
             <p>Total</p>
-            <span class="sub__total">0</span>
+            <span className="sub__total"> {order.totalPrice} </span>
           </div>
         </div>
 
-        <div class="order-totals--delivery hidden">
+        <div className="order-totals--delivery hidden">
           <span>Delivery fees</span>
-          <span class="sub__total"></span>
+          <span className="sub__total"></span>
         </div>
 
-        <div class="order-totals--totals hidden">
-          <h2 class="heading-2">Total</h2>
-          <span class="sub__total"></span>
+        <div className="order-totals--totals hidden">
+          <h2 className="heading-2">Total</h2>
+          <span className="sub__total"></span>
         </div>
       </div>
 
-      <div class="order">
-        <h2 class="heading-2 order__heading">Order Pizza</h2>
-        <form class="form order__form">
+      {/* ON change I want to get the ingridient and also the price of the ingridient */}
+      <div className="order">
+        <h2 className="heading-2 order__heading">Order Pizza</h2>
+        <form className="form order__form" onSubmit={handleSubmit}>
           <label>Toppings</label>
-          <select class="form__input order-toppings" required>
+          <select
+            className="form__input order-toppings"
+            required
+            onChange={(e) => {
+              ingridients = [...ingridients, e.target.value];
+              subTotal = subTotal + menu.toppings[e.target.value];
+            }}
+          >
             <option></option>
             <option value="pepperoni">Pepperoni</option>
             <option value="mushroom">Mushroom</option>
@@ -49,7 +99,15 @@ function Order() {
           </select>
 
           <label>Crust</label>
-          <select class="form__input order-crust" required>
+          <select
+            className="form__input order-crust"
+            required
+            onChange={(e) => {
+              ingridients = [...ingridients, e.target.value];
+
+              subTotal = subTotal + menu.crust[e.target.value];
+            }}
+          >
             <option></option>
             <option value="stuffed">Stuffed</option>
             <option value="crispy">Crispy</option>
@@ -57,27 +115,34 @@ function Order() {
           </select>
 
           <label>Size</label>
-          <select class="form__input order-size" required>
+          <select
+            className="form__input order-size"
+            required
+            onChange={(e) => {
+              ingridients = [...ingridients, e.target.value];
+              subTotal = subTotal + menu.size[e.target.value];
+            }}
+          >
             <option></option>
             <option value="small">Small</option>
             <option value="medium">Medium</option>
             <option value="large">Large</option>
           </select>
 
-          <input type="submit" class="btn" value="Order" />
+          <input type="submit" className="btn" value="Order" />
         </form>
 
-        <div class="delivery hidden">
-          <h4 class="heading-4">Would you like it to be delivered</h4>
-          <input type="radio" name="deliver" value="yes" class="radio" />
+        <div className="delivery hidden">
+          <h4 className="heading-4">Would you like it to be delivered</h4>
+          <input type="radio" name="deliver" value="yes" className="radio" />
           Yes
           <br />
-          <input type="radio" name="deliver" value="no" class="radio" />
+          <input type="radio" name="deliver" value="no" className="radio" />
           No
           <br />
         </div>
 
-        <button class="btn hidden checkout">Proceed to checkout</button>
+        <button className="btn hidden checkout">Proceed to checkout</button>
       </div>
     </main>
   );
