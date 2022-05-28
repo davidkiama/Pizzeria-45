@@ -32,7 +32,9 @@ function Order() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    totalPrice = subTotal * quantity;
+    totalPrice = 0; //reset it anytime we recalculate
+    for (const [, price] of Object.entries(subTotal)) totalPrice += price;
+    totalPrice = totalPrice * quantity;
 
     placeOrder(quantity, ingridients, subTotal, totalPrice);
   };
@@ -44,8 +46,8 @@ function Order() {
             <p>Quantity</p>
             <input
               type="number"
+              defaultValue={1}
               className="quantity"
-              placeholder="1"
               onChange={(e) => {
                 quantity = [e.target.value];
               }}
@@ -55,9 +57,9 @@ function Order() {
           <div>
             <p>Ingridients</p>
             <span className="ingridients">
-              <i className="ing__toppings"></i>
-              <i className="ing__crust"></i>
-              <i className="ing__size"></i>
+              <i className="ing__toppings">{order.ingridients.toppings} </i>
+              <i className="ing__crust"> {order.ingridients.crust} </i>
+              <i className="ing__size"> {order.ingridients.size} </i>
             </span>
           </div>
 
@@ -85,10 +87,11 @@ function Order() {
           <label>Toppings</label>
           <select
             className="form__input order-toppings"
+            name="toppings"
             required
             onChange={(e) => {
-              ingridients = [...ingridients, e.target.value];
-              subTotal = subTotal + menu.toppings[e.target.value];
+              ingridients = { ...ingridients, [e.target.name]: e.target.value };
+              subTotal = { ...subTotal, [e.target.name]: menu.toppings[ingridients.toppings] };
             }}
           >
             <option></option>
@@ -101,11 +104,12 @@ function Order() {
           <label>Crust</label>
           <select
             className="form__input order-crust"
+            name="crust"
             required
             onChange={(e) => {
-              ingridients = [...ingridients, e.target.value];
+              ingridients = { ...ingridients, [e.target.name]: e.target.value };
 
-              subTotal = subTotal + menu.crust[e.target.value];
+              subTotal = { ...subTotal, [e.target.name]: menu.crust[ingridients.crust] };
             }}
           >
             <option></option>
@@ -118,9 +122,10 @@ function Order() {
           <select
             className="form__input order-size"
             required
+            name="size"
             onChange={(e) => {
-              ingridients = [...ingridients, e.target.value];
-              subTotal = subTotal + menu.size[e.target.value];
+              ingridients = { ...ingridients, [e.target.name]: e.target.value };
+              subTotal = { ...subTotal, [e.target.name]: menu.size[ingridients.size] };
             }}
           >
             <option></option>
