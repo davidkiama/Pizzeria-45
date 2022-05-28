@@ -95,10 +95,9 @@ function Order() {
             }}
           >
             <option></option>
-            <option value="pepperoni">Pepperoni</option>
-            <option value="mushroom">Mushroom</option>
-            <option value="extraCheese">Extra cheese</option>
-            <option value="sausage">Sausage</option>
+            {Object.keys(menu.toppings).map((menuItem) => (
+              <option value={menuItem}>{menuItem}</option>
+            ))}
           </select>
 
           <label>Crust</label>
@@ -113,9 +112,9 @@ function Order() {
             }}
           >
             <option></option>
-            <option value="stuffed">Stuffed</option>
-            <option value="crispy">Crispy</option>
-            <option value="gluttenFree">Glutten-free</option>
+            {Object.keys(menu.crust).map((menuItem) => (
+              <option value={menuItem}>{menuItem}</option>
+            ))}
           </select>
 
           <label>Size</label>
@@ -129,9 +128,9 @@ function Order() {
             }}
           >
             <option></option>
-            <option value="small">Small</option>
-            <option value="medium">Medium</option>
-            <option value="large">Large</option>
+            {Object.keys(menu.size).map((menuItem) => (
+              <option value={menuItem}>{menuItem}</option>
+            ))}
           </select>
 
           <input type="submit" className="btn" value="Order" />
