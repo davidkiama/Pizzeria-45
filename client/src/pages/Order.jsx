@@ -1,6 +1,8 @@
-import React from "react";
-import { useContext } from "react";
+import { useState, useContext } from "react";
+
 import { OrderContext } from "../OrderContext";
+
+import "./Order.css";
 
 const menu = {
   toppings: {
@@ -23,6 +25,7 @@ const menu = {
 
 function Order() {
   const { order, placeOrder } = useContext(OrderContext);
+  const [activePage, setActivePage] = useState("order__page--1");
 
   let quantity = order.quantity;
   let ingridients = order.ingridients;
@@ -37,6 +40,9 @@ function Order() {
     totalPrice = totalPrice * quantity;
 
     placeOrder(quantity, ingridients, subTotal, totalPrice);
+
+    //if forms submit switch to other page
+    setActivePage("order__page--2");
   };
   return (
     <main className="main main--order">
@@ -52,15 +58,6 @@ function Order() {
                 quantity = [e.target.value];
               }}
             />
-          </div>
-
-          <div>
-            <p>Ingridients</p>
-            <span className="ingridients">
-              <i className="ing__toppings">{order.ingridients.toppings} </i>
-              <i className="ing__crust"> {order.ingridients.crust} </i>
-              <i className="ing__size"> {order.ingridients.size} </i>
-            </span>
           </div>
 
           <div>
@@ -82,8 +79,13 @@ function Order() {
 
       {/* ON change I want to get the ingridient and also the price of the ingridient */}
       <div className="order">
-        <h2 className="heading-2 order__heading">Order Pizza</h2>
-        <form className="form order__form" onSubmit={handleSubmit}>
+        <form
+          className={`${
+            activePage === "order__page--1" ? "active" : ""
+          } order__form order__page order__page--1`}
+          onSubmit={handleSubmit}
+        >
+          <h2 className="heading-2 order__heading">Order Pizza</h2>
           <label>Toppings</label>
           <select
             className="form__input order-toppings"
@@ -133,10 +135,13 @@ function Order() {
             ))}
           </select>
 
-          <input type="submit" className="btn" value="Order" />
+          <input type="submit" className="btn" value="Checkout" />
         </form>
 
-        <div className="delivery hidden">
+        {/* Page 2 */}
+        <div
+          className={` ${activePage === "order__page--2" ? "active" : ""} receipt order__page order__page--2`}
+        >
           <h4 className="heading-4">Would you like it to be delivered</h4>
           <input type="radio" name="deliver" value="yes" className="radio" />
           Yes
@@ -144,9 +149,25 @@ function Order() {
           <input type="radio" name="deliver" value="no" className="radio" />
           No
           <br />
+          <span className="ingridients">
+            <p>
+              <i className="ing__toppings">{order.ingridients.toppings}</i>
+              <span>{order.subTotal.toppings}</span>
+            </p>
+            <p>
+              <i className="ing__crust">{order.ingridients.crust}</i>
+              <span>{order.subTotal.crust}</span>
+            </p>
+            <p>
+              <i className="ing__size">{order.ingridients.size}</i>
+              <span>{order.subTotal.size}</span>
+            </p>
+          </span>
+          <button className="btn">0rder</button>
+          <span className="receipt__back" onClick={() => setActivePage("order__page--1")}>
+            &#171; Back
+          </span>
         </div>
-
-        <button className="btn hidden checkout">Proceed to checkout</button>
       </div>
     </main>
   );

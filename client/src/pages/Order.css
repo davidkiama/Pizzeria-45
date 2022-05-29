@@ -1,0 +1,125 @@
+.order-totals {
+  margin-left: 2rem;
+  font-size: 1.7rem;
+  width: 45rem;
+  height: 10rem;
+}
+
+.order-totals--pizza,
+.order-totals--delivery,
+.order-totals--totals {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.sub__total {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+.order-totals--totals .sub__total {
+  font-size: 2rem;
+  text-align: right;
+}
+
+.order-totals input {
+  width: 5rem;
+  padding: 0.5rem;
+  font-size: 1.8rem;
+}
+
+.ingridients {
+  text-transform: capitalize;
+}
+
+.ingridients p {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1.5rem;
+}
+
+.checkout {
+  width: 100%;
+}
+
+.order {
+  width: 35rem;
+  height: 35rem;
+  padding: 2rem 1rem;
+  margin: 0 auto;
+  margin-bottom: 5rem;
+  text-align: left;
+  font-size: 1.8rem;
+  display: flex;
+  align-items: center;
+
+  background-color: white;
+
+  position: relative;
+}
+
+.order__page {
+  width: 85%;
+  position: absolute;
+  top: 2rem;
+  left: 0;
+  transition: all 0.3s;
+}
+
+.order__page--1 {
+  transform: translateX(-130%);
+}
+
+.order__page--2 {
+  transform: translateX(130%);
+}
+
+.order__page.active {
+  transform: translateX(15%); /* in reference to the width which is 85%*/
+}
+
+.order__heading {
+  text-align: center;
+}
+
+.receipt {
+  display: flex;
+  flex-direction: column;
+}
+
+.receipt__back {
+  cursor: pointer;
+  background-color: #dcdcdc;
+  padding: 0.5rem 0.8rem;
+  width: fit-content;
+}
+.radio {
+  margin-top: 1rem;
+}
+
+.order .btn {
+  margin: 1rem auto;
+}
+
+.order__form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form__input {
+  width: min-content;
+  border: none;
+  background-color: #dcdcdc;
+
+  font-size: 1.7rem;
+  margin-bottom: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.7rem;
+  transition: all 0.3s;
+}
+
+.form__input:focus {
+  outline: none;
+}
