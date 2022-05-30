@@ -177,7 +177,7 @@ function Order() {
             </p>
             <p>
               <h2 className="heading-2">Total</h2>
-              <span className="sub__total"> {order.totalPrice + order.deliveryFee} </span>
+              <span className="sub__total"> {order.totalPrice * order.quantity + order.deliveryFee} </span>
             </p>
           </span>
           <button className="btn">0rder</button>
