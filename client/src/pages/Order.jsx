@@ -24,22 +24,18 @@ const menu = {
 };
 
 function Order() {
-  const { order, placeOrder } = useContext(OrderContext);
+  const { order, setOrder } = useContext(OrderContext);
   const [activePage, setActivePage] = useState("order__page--1");
-
-  let quantity = order.quantity;
-  let ingridients = order.ingridients;
-  let totalPrice = order.totalPrice;
-  let subTotal = order.subTotal;
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    totalPrice = 0; //reset it anytime we recalculate
-    for (const [, price] of Object.entries(subTotal)) totalPrice += price;
-    totalPrice = totalPrice * quantity;
+    let subPrice = 0;
+    for (let [, price] of Object.entries(order.subTotal)) {
+      subPrice += price;
+    }
 
-    placeOrder(quantity, ingridients, subTotal, totalPrice);
+    setOrder({ ...order, totalPrice: subPrice });
 
     //if forms submit switch to other page
     setActivePage("order__page--2");
@@ -55,7 +51,7 @@ function Order() {
               defaultValue={1}
               className="quantity"
               onChange={(e) => {
-                quantity = [e.target.value];
+                setOrder({ ...order, quantity: [e.target.value] });
               }}
             />
           </div>
@@ -64,16 +60,6 @@ function Order() {
             <p>Total</p>
             <span className="sub__total"> {order.totalPrice} </span>
           </div>
-        </div>
-
-        <div className="order-totals--delivery hidden">
-          <span>Delivery fees</span>
-          <span className="sub__total"></span>
-        </div>
-
-        <div className="order-totals--totals hidden">
-          <h2 className="heading-2">Total</h2>
-          <span className="sub__total"></span>
         </div>
       </div>
 
@@ -92,8 +78,11 @@ function Order() {
             name="toppings"
             required
             onChange={(e) => {
-              ingridients = { ...ingridients, [e.target.name]: e.target.value };
-              subTotal = { ...subTotal, [e.target.name]: menu.toppings[ingridients.toppings] };
+              setOrder({
+                ...order,
+                ingridients: { ...order.ingridients, [e.target.name]: e.target.value },
+                subTotal: { ...order.subTotal, [e.target.name]: menu.toppings[e.target.value] },
+              });
             }}
           >
             <option></option>
@@ -108,9 +97,11 @@ function Order() {
             name="crust"
             required
             onChange={(e) => {
-              ingridients = { ...ingridients, [e.target.name]: e.target.value };
-
-              subTotal = { ...subTotal, [e.target.name]: menu.crust[ingridients.crust] };
+              setOrder({
+                ...order,
+                ingridients: { ...order.ingridients, [e.target.name]: e.target.value },
+                subTotal: { ...order.subTotal, [e.target.name]: menu.crust[e.target.value] },
+              });
             }}
           >
             <option></option>
@@ -125,8 +116,11 @@ function Order() {
             required
             name="size"
             onChange={(e) => {
-              ingridients = { ...ingridients, [e.target.name]: e.target.value };
-              subTotal = { ...subTotal, [e.target.name]: menu.size[ingridients.size] };
+              setOrder({
+                ...order,
+                ingridients: { ...order.ingridients, [e.target.name]: e.target.value },
+                subTotal: { ...order.subTotal, [e.target.name]: menu.size[e.target.value] },
+              });
             }}
           >
             <option></option>
@@ -143,12 +137,26 @@ function Order() {
           className={` ${activePage === "order__page--2" ? "active" : ""} receipt order__page order__page--2`}
         >
           <h4 className="heading-4">Would you like it to be delivered</h4>
-          <input type="radio" name="deliver" value="yes" className="radio" />
-          Yes
-          <br />
-          <input type="radio" name="deliver" value="no" className="radio" />
-          No
-          <br />
+          <span className="radios">
+            <input
+              type="radio"
+              name="deliver"
+              value="yes"
+              className="radio"
+              onChange={() => setOrder({ ...order, deliveryFee: 200 })}
+            />
+            Yes
+            <input
+              type="radio"
+              name="deliver"
+              value="no"
+              className="radio"
+              onChange={() => setOrder({ ...order, deliveryFee: 0 })}
+            />
+            No
+          </span>
+
+          <hr />
           <span className="ingridients">
             <p>
               <i className="ing__toppings">{order.ingridients.toppings}</i>
@@ -161,6 +169,15 @@ function Order() {
             <p>
               <i className="ing__size">{order.ingridients.size}</i>
               <span>{order.subTotal.size}</span>
+            </p>
+
+            <p>
+              <span>Delivery</span>
+              <span>{order.deliveryFee} </span>
+            </p>
+            <p>
+              <h2 className="heading-2">Total</h2>
+              <span className="sub__total"> {order.totalPrice + order.deliveryFee} </span>
             </p>
           </span>
           <button className="btn">0rder</button>

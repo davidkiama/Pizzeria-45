@@ -95,8 +95,10 @@
   padding: 0.5rem 0.8rem;
   width: fit-content;
 }
-.radio {
-  margin-top: 1rem;
+.radios {
+  display: flex;
+  column-gap: 2rem;
+  align-items: center;
 }
 
 .order .btn {
