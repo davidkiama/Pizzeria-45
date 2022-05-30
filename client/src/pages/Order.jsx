@@ -62,7 +62,7 @@ function Order() {
 
           <div>
             <p>Total</p>
-            <span className="sub__total"> {order.totalPrice} </span>
+            <span className="sub__total">{order.totalPrice} </span>
           </div>
         </div>
       </div>
@@ -181,7 +181,7 @@ function Order() {
             </p>
             <p>
               <h2 className="heading-2">Total</h2>
-              <span className="sub__total"> {order.totalPrice + order.deliveryFee} </span>
+              <span className="sub__total">Kes {order.totalPrice + order.deliveryFee}/= </span>
             </p>
           </span>
           <button

@@ -5,11 +5,13 @@ import { OrderContext } from "../OrderContext";
 function Checkout() {
   const { order } = useContext(OrderContext);
   return (
-    <div className="order">
-      <div className="pay-info ">
-        <h4 className="heading-4">You will be required to pay {order.totalPrice} </h4>
+    <main className="main">
+      <div className="order">
+        <div className="pay-info ">
+          <h4 className="heading-4">You will be required to pay Kes {order.totalPrice}/= </h4>
+        </div>
       </div>
-    </div>
+    </main>
   );
 }
 

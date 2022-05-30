@@ -1,24 +1,16 @@
-import React, { useEffect, useState } from "react";
-
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
+import "./Home.css";
+
+const nums = new Set();
+while (nums.size !== 6) {
+  nums.add(Math.floor(Math.random() * 6) + 1);
+}
+
 function Home() {
-  const [pizzas, setPizzas] = useState([]);
-
-  const getPizza = async () => {
-    const data = await fetch(
-      `https://api.spoonacular.com/food/products/search?apiKey=${process.env.REACT_APP_API_KEY}&query=pizza`
-    );
-
-    const results = await data.json();
-    console.log(results.products);
-    setPizzas(results.products);
-  };
-
-  useEffect(() => {
-    getPizza();
-    console.log(pizzas);
-  }, []);
+  const [imagesArr] = useState([...nums]);
+  console.log(imagesArr);
 
   return (
     <main className="main">
@@ -28,16 +20,15 @@ function Home() {
       <div className="main-content">
         <h3 className="heading-3">Most popular pizza</h3>
 
-        {/* <div className="pizzas">
-          {pizzas.map((pizza) => {
+        <div className="pizzas">
+          {imagesArr.map((imgInd) => {
             return (
-              <div className="pizza" key={pizza.id}>
-                <img src={pizza.image} alt="pizza-img" className="pizza__img" />
-                <h4 className="heading-4 pizza__title"></h4>
+              <div className="pizza" key={imgInd}>
+                <img src={`img/piz-${imgInd}.jpg`} alt="pizza-img" className="pizza__img" />
               </div>
             );
           })}
-        </div> */}
+        </div>
       </div>
     </main>
   );

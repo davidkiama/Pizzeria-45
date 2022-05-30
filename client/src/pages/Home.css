@@ -1,0 +1,41 @@
+/* pizzas section */
+.pizzas {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  column-gap: 3rem;
+  row-gap: 3rem;
+  margin-top: 2rem;
+}
+
+.pizza {
+  width: 38rem;
+  position: relative;
+  cursor: pointer;
+}
+
+.pizza:hover .pizza__desc {
+  opacity: 1;
+}
+
+.pizza:hover .pizza__img {
+  filter: brightness(0.7);
+}
+
+.pizza__img {
+  width: 100%;
+  transition: all.3s;
+}
+.pizza__desc {
+  opacity: 0;
+  font-size: 1.8rem;
+  color: var(--color-grey);
+  text-transform: capitalize;
+  position: absolute;
+  bottom: 3rem;
+  right: 3rem;
+  direction: rtl;
+  text-align: left;
+
+  transition: all 0.5s;
+}

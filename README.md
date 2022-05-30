@@ -12,9 +12,9 @@ This is a fictional web application that sells pizzas. One can place an order an
 
 ## Technologies Used
 
+1. React
 1. HTML
 1. CSS
-1. Javacript
 
 ## Author
 
