@@ -1,7 +1,7 @@
 .order-totals {
   margin-left: 2rem;
   font-size: 1.7rem;
-  width: 45rem;
+  width: 25rem;
   height: 10rem;
 }
 
@@ -74,6 +74,10 @@
 }
 
 .order__page--2 {
+  transform: translateX(130%);
+}
+
+.order__page--3 {
   transform: translateX(130%);
 }
 

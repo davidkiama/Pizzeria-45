@@ -7,6 +7,7 @@ import Footer from "./components/Footer";
 
 import Home from "./pages/Home";
 import Order from "./pages/Order";
+import Checkout from "./pages/Checkout";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Routes>
           <Route path="/" exact element={<Home />}></Route>
           <Route path="/order" exact element={<Order />}></Route>
+          <Route path="/checkout" exact element={<Checkout />}></Route>
         </Routes>
         <Footer />
       </OrderProvider>

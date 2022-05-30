@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-
+import { Link } from "react-router-dom";
 import { OrderContext } from "../OrderContext";
 
 import "./Order.css";
@@ -51,7 +51,11 @@ function Order() {
               defaultValue={1}
               className="quantity"
               onChange={(e) => {
-                setOrder({ ...order, quantity: [e.target.value] });
+                setOrder({
+                  ...order,
+                  quantity: [e.target.value],
+                  totalPrice: order.totalPrice * [e.target.value],
+                });
               }}
             />
           </div>
@@ -177,10 +181,15 @@ function Order() {
             </p>
             <p>
               <h2 className="heading-2">Total</h2>
-              <span className="sub__total"> {order.totalPrice * order.quantity + order.deliveryFee} </span>
+              <span className="sub__total"> {order.totalPrice + order.deliveryFee} </span>
             </p>
           </span>
-          <button className="btn">0rder</button>
+          <button
+            className="btn"
+            onClick={() => setOrder({ ...order, totalPrice: order.totalPrice + order.deliveryFee })}
+          >
+            <Link to="/checkout"> Order</Link>
+          </button>
           <span className="receipt__back" onClick={() => setActivePage("order__page--1")}>
             &#171; Back
           </span>
