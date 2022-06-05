@@ -140,7 +140,7 @@ function Order() {
         <div
           className={` ${activePage === "order__page--2" ? "active" : ""} receipt order__page order__page--2`}
         >
-          <h4 className="heading-4">Would you like it to be delivered</h4>
+          <h4 className="heading-4">Will it be delivered?</h4>
           <span className="radios">
             <input
               type="radio"

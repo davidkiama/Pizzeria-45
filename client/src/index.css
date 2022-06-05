@@ -10,6 +10,7 @@ html {
   font-size: 62.5%;
   box-sizing: inherit;
 }
+
 body {
   font-size: 1.4rem;
   font-family: sans-serif;
@@ -46,7 +47,13 @@ body {
 }
 
 .heading-1 {
-  font-size: 2em;
+  font-size: 5rem;
+}
+
+@media only screen and (max-width: 25em) {
+  .heading-1 {
+    font-size: 3.5rem;
+  }
 }
 
 .heading-2 {

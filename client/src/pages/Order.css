@@ -45,7 +45,7 @@
 }
 
 .order {
-  width: 35rem;
+  width: 32rem;
   height: 35rem;
   padding: 2rem 1rem;
   margin: 0 auto;
@@ -58,6 +58,12 @@
   background-color: white;
 
   position: relative;
+}
+
+@media only screen and (max-width: 25em) {
+  .order {
+    width: 28rem;
+  }
 }
 
 .order__page {
@@ -130,4 +136,8 @@
 
 .form__input:focus {
   outline: none;
+}
+
+.pay-info {
+  text-align: center;
 }
