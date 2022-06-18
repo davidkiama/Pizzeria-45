@@ -11,5 +11,16 @@ export const OrderProvider = ({ children }) => {
     deliveryFee: 0,
   });
 
-  return <OrderContext.Provider value={{ order, setOrder }}>{children}</OrderContext.Provider>;
+  const [paymentInfo, setPaymentInfo] = useState({
+    email: "",
+    customerId: "",
+    description: "",
+    netAmount: "",
+  });
+
+  return (
+    <OrderContext.Provider value={{ order, setOrder, paymentInfo, setPaymentInfo }}>
+      {children}
+    </OrderContext.Provider>
+  );
 };
