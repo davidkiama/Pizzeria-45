@@ -1,8 +1,8 @@
 import * as api from "../api";
 
 export const createCustomer = async (body) => {
-  console.log(body);
   try {
+    console.log("test");
     const data = await api.createCustomer(body);
     console.log(data);
   } catch (error) {

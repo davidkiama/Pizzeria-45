@@ -8,39 +8,30 @@ const COINQVEST_SECRET = process.env.COINQVEST_SECRET;
 
 const client = new CoinqvestClient(COINQVEST_KEY, COINQVEST_SECRET);
 
-let customerId = "c9867d829a21";
-
-export const createCustomer = async (req, res) => {
-  // TEST WHEN CALLED
-  console.log("//////////////////////////////////////////////////////");
-  console.log("Create customer called");
+export const createCustomer = (req, res) => {
   const { email } = req.body;
-  console.log(email);
-  try {
-    client.post(
-      "/customer",
-      {
-        customer: {
-          email, // email is the only mandatory field
-        },
+
+  client.post(
+    "/customer",
+    {
+      customer: {
+        email, // email is the only mandatory field
       },
-      function (response) {
-        console.log(response.status);
-        console.log(response.data);
+    },
+    function (response) {
+      console.log(response.status);
+      console.log(response.data);
 
-        if (response.status !== 200) {
-          // something went wrong, let's abort and debug by looking at our log file
-          console.log("Could not create customer. Inspect above log entry.");
-          return;
-        }
-
-        customerId = response.data["customerId"]; // store this persistently in your database
-        return customerId;
+      if (response.status !== 200) {
+        // something went wrong, let's abort and debug by looking at our log file
+        console.log("Could not create customer. Inspect above log entry.");
+        return;
       }
-    );
-  } catch (error) {
-    console.log(error);
-  }
+
+      const customerId = response.data["customerId"]; // store this persistently in your database
+      res.send(customerId); //I returned this so as to save in state in React
+    }
+  );
 };
 
 export const createCheckout = async (req, res) => {
