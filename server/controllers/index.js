@@ -35,43 +35,35 @@ export const createCustomer = (req, res) => {
 };
 
 export const createCheckout = async (req, res) => {
-  // TEST WHEN CALLED
-  console.log("//////////////////////////////////////////////////////");
-  console.log("Create checkout called");
-
   const { customerId, description, netAmount } = req.body;
-  try {
-    client.post(
-      "/checkout/hosted",
-      {
-        charge: {
-          customerId,
-          currency: "USD",
-          lineItems: [
-            {
-              description,
-              netAmount,
-            },
-          ],
-        },
-        settlementCurrency: "BTC",
-        links: {
-          cancelUrl: "https://www.merchant.com/path/to/cancel/checkout",
-          returnUrl: "https://www.merchant.com/path/to/complete/checkout",
-        },
-      },
-      (r) => {
-        if (r.status !== 200) {
-          console.log("Could not create checkout");
-          return;
-        }
-        const url = r.data["url"];
 
-        console.log(url);
-        return url;
+  client.post(
+    "/checkout/hosted",
+    {
+      charge: {
+        customerId,
+        currency: "USD",
+        lineItems: [
+          {
+            description,
+            netAmount,
+          },
+        ],
+      },
+      settlementCurrency: "BTC",
+      links: {
+        cancelUrl: "https://www.merchant.com/path/to/cancel/checkout",
+        returnUrl: "https://www.merchant.com/path/to/complete/checkout",
+      },
+    },
+    (response) => {
+      if (response.status !== 200) {
+        console.log("Could not create checkout");
+        return;
       }
-    );
-  } catch (error) {
-    console.log(error);
-  }
+      const url = response.data["url"];
+
+      res.send(url);
+    }
+  );
 };

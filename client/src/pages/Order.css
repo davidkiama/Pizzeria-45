@@ -147,3 +147,13 @@
   padding: 0.6rem 1rem;
   outline: none;
 }
+
+.icons {
+  margin: 1rem 5rem;
+  display: flex;
+  justify-content: space-around;
+}
+
+.icons img {
+  height: 3rem;
+}

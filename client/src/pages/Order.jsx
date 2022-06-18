@@ -6,20 +6,20 @@ import "./Order.css";
 
 const menu = {
   toppings: {
-    pepperoni: 200,
-    mushroom: 150,
-    extraCheese: 300,
-    sausage: 300,
+    pepperoni: 2,
+    mushroom: 1.5,
+    extraCheese: 3,
+    sausage: 3,
   },
   crust: {
-    stuffed: 200,
-    crispy: 450,
-    gluttenFree: 350,
+    stuffed: 2,
+    crispy: 4.5,
+    gluttenFree: 3.5,
   },
   size: {
-    small: 500,
-    medium: 750,
-    large: 900,
+    small: 5,
+    medium: 7.5,
+    large: 9,
   },
 };
 
@@ -147,7 +147,7 @@ function Order() {
               name="deliver"
               value="yes"
               className="radio"
-              onChange={() => setOrder({ ...order, deliveryFee: 200 })}
+              onChange={() => setOrder({ ...order, deliveryFee: 2 })}
             />
             Yes
             <input
@@ -181,7 +181,7 @@ function Order() {
             </p>
             <p>
               <h2 className="heading-2">Total</h2>
-              <span className="sub__total">Kes {order.totalPrice + order.deliveryFee}/= </span>
+              <span className="sub__total">$ {order.totalPrice + order.deliveryFee} </span>
             </p>
           </span>
           <button

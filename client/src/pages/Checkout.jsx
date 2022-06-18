@@ -1,16 +1,26 @@
 import { useContext } from "react";
-import { createCustomer } from "../actions";
 
+import { createCustomer, createCheckout } from "../actions";
 import { OrderContext } from "../OrderContext";
 
 function Checkout() {
   const { order, paymentInfo, setPaymentInfo } = useContext(OrderContext);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     // Make the api call to create customer once email is entered
 
-    createCustomer(paymentInfo);
+    const customerId = await createCustomer(paymentInfo);
+
+    setPaymentInfo({
+      ...paymentInfo,
+      customerId: customerId,
+      netAmount: order.totalPrice,
+      description: "Test title desc",
+    });
+
+    const dataCheckout = await createCheckout(paymentInfo);
+    console.log(dataCheckout);
   };
 
   return (
@@ -27,6 +37,14 @@ function Checkout() {
               required
               onChange={(e) => setPaymentInfo({ ...paymentInfo, email: e.target.value })}
             />
+
+            <h4 className="heading-4">Pay with</h4>
+            <div className="icons">
+              <img src="img/bitcoin.svg" alt="bitcoin" />
+              <img src="img/litecoin.svg" alt="litecoin" />
+              <img src="img/stellar.svg" alt="stellar" />
+              <img src="img/ethereum.svg" alt="ethereum" />
+            </div>
 
             <input type="submit" className="btn" value="Pay" />
           </form>
