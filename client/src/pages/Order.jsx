@@ -91,7 +91,9 @@ function Order() {
           >
             <option></option>
             {Object.keys(menu.toppings).map((menuItem) => (
-              <option value={menuItem}>{menuItem}</option>
+              <option key={menuItem} value={menuItem}>
+                {menuItem}
+              </option>
             ))}
           </select>
 
@@ -110,7 +112,9 @@ function Order() {
           >
             <option></option>
             {Object.keys(menu.crust).map((menuItem) => (
-              <option value={menuItem}>{menuItem}</option>
+              <option key={menuItem} value={menuItem}>
+                {menuItem}
+              </option>
             ))}
           </select>
 
@@ -129,7 +133,9 @@ function Order() {
           >
             <option></option>
             {Object.keys(menu.size).map((menuItem) => (
-              <option value={menuItem}>{menuItem}</option>
+              <option key={menuItem} value={menuItem}>
+                {menuItem}
+              </option>
             ))}
           </select>
 
