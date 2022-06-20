@@ -1,20 +1,22 @@
 # Pizzeria 45
 
-Pizzeria-45 Version 1.0
+Pizzeria-45 Version 2.0
 
 ## Description
 
-This is a fictional web application that sells pizzas. One can place an order and have delivered.
+This is a fictional web application that sells pizzas. One can place an order, make changes on the order, pay for the order with crypto.
 
 ## Demo
 
-[Live Demo](https://davidkiama.github.io/Pizzeria-45/)
+[Live Demo](https://pizzeria-45.netlify.app/)
 
 ## Technologies Used
 
 1. React
-1. HTML
-1. CSS
+1. NodeJs
+1. Coinqvest
+1. Heroku
+1. Netlify
 
 ## Author
 
@@ -22,17 +24,25 @@ This is a fictional web application that sells pizzas. One can place an order an
 
 ## Project setup and instructions
 
-I have deployed the page and here is the [link](https://davidkiama.github.io/Pizzeria-45/). You can also download the entire folder and open the html file on your browser.
+I have deployed the page and here is the [link](https://pizzeria-45.netlify.app/).
+
+You can also clone the repository `git clone https://github.com/davidkiama/Pizzeria-45.git `
+
+Navigate to client directory with `cd client/ `
+
+Install the required packages `npm install `
+
+Run the project locally `npm start `
 
 ## Support and contact details
 
-If you have any questions, ideas or concerns, kindly reach out to me via email : david.kiama@student.moringaschool.com
+If you have any questions, ideas or concerns, kindly reach out to me via email : davidkiama98@gmail.com
 
 ## Licence
 
 MIT License
 
-Copyright (c) [2021] [David Kiama]
+Copyright (c) [2022] [David Kiama]
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
