@@ -63,7 +63,7 @@ export const createCheckout = async (req, res) => {
       }
       const url = response.data["url"];
 
-      res.send(url);
+      res.json(200).json({ url, message: "Redirecting to payment page..." });
     }
   );
 };

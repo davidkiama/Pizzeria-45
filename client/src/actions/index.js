@@ -11,8 +11,8 @@ export const createCustomer = async (body) => {
 
 export const createCheckout = async (body) => {
   try {
-    const { data } = await api.createCheckout(body);
-    return data;
+    const { status, data } = await api.createCheckout(body);
+    return { status, data };
   } catch (error) {
     console.log(error);
   }

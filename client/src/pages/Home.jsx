@@ -10,7 +10,6 @@ while (nums.size !== 6) {
 
 function Home() {
   const [imagesArr] = useState([...nums]);
-  console.log(imagesArr);
 
   return (
     <main className="main">
